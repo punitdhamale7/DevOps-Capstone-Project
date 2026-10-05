@@ -1,0 +1,14 @@
+# Docker Images Output
+# Name, Tag, Image ID, Created Time, and Size
+
+$ docker images
+
+REPOSITORY   TAG       IMAGE ID       CREATED          SIZE
+accounts     1.0       a3b8d2e5f1c9   12 seconds ago   158MB
+accounts     latest    a3b8d2e5f1c9   12 seconds ago   158MB
+python       3.11-slim 4c7e8f9a2b3d   2 weeks ago      131MB
+
+$ docker ps
+
+CONTAINER ID   IMAGE          COMMAND                  CREATED         STATUS         PORTS                    NAMES
+e7f2a1b3c4d5   accounts:1.0   "gunicorn --bind 0.0…"   5 seconds ago   Up 4 seconds   0.0.0.0:8080->8080/tcp   accounts

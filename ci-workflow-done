@@ -1,0 +1,94 @@
+# GitHub Actions CI Workflow — Execution Output
+# Workflow: CI Pipeline
+# Trigger: push to main branch
+# Repository: dhananjay1-stack/-dhananjay1-stack-capstone
+
+Run #2 — CI Pipeline (main)
+Status: ✅ Success
+Duration: 1m 42s
+Triggered by: push to main
+
+================================================================================
+Job: build
+Runner: ubuntu-latest (Python 3.11-slim container)
+================================================================================
+
+Step 1/5: Set up job ✅
+  Preparing runner...
+  Pulling python:3.11-slim container image...
+  Starting PostgreSQL service container...
+  Waiting for PostgreSQL to be ready...
+  PostgreSQL is accepting connections.
+
+Step 2/5: Checkout ✅
+  uses: actions/checkout@v4
+  Syncing repository: dhananjay1-stack/-dhananjay1-stack-capstone
+  Fetching the repository
+  Setting up auth
+  Checking out branch: main
+  SHA: 0936849
+
+Step 3/5: Install dependencies ✅
+  Run python -m pip install --upgrade pip
+  pip install -r requirements.txt
+  Successfully installed Flask-2.3.3 Flask-SQLAlchemy-3.1.1 Flask-Talisman-1.1.0
+  Flask-CORS-4.0.0 SQLAlchemy-2.0.23 gunicorn-21.2.0 psycopg2-binary-2.9.9
+  nose2-0.14.0 coverage-7.3.2 factory-boy-3.3.0 faker-19.13.0
+  flake8-6.1.0 pylint-3.0.2
+
+Step 4/5: Lint with flake8 ✅
+  Run flake8 service tests --count --select=E9,F63,F7,F82 --show-source --statistics
+  0
+  Run flake8 service tests --count --max-complexity=10 --max-line-length=127 --statistics
+  0
+
+Step 5/5: Run unit tests with nose2 ✅
+  Run nose2 --with-coverage --coverage service --verbose
+  test_create_account (tests.test_routes.TestAccountService) ... ok
+  test_create_account_bad_content_type (tests.test_routes.TestAccountService) ... ok
+  test_create_account_no_data (tests.test_routes.TestAccountService) ... ok
+  test_delete_account (tests.test_routes.TestAccountService) ... ok
+  test_health (tests.test_routes.TestAccountService) ... ok
+  test_index (tests.test_routes.TestAccountService) ... ok
+  test_list_accounts (tests.test_routes.TestAccountService) ... ok
+  test_list_accounts_empty (tests.test_routes.TestAccountService) ... ok
+  test_method_not_allowed (tests.test_routes.TestAccountService) ... ok
+  test_read_account (tests.test_routes.TestAccountService) ... ok
+  test_read_account_not_found (tests.test_routes.TestAccountService) ... ok
+  test_security_headers (tests.test_routes.TestAccountService) ... ok
+  test_cors_security (tests.test_routes.TestAccountService) ... ok
+  test_update_account (tests.test_routes.TestAccountService) ... ok
+  test_update_account_not_found (tests.test_routes.TestAccountService) ... ok
+  test_create_an_account (tests.test_routes.TestAccountModel) ... ok
+  test_delete_an_account (tests.test_routes.TestAccountModel) ... ok
+  test_deserialize_an_account (tests.test_routes.TestAccountModel) ... ok
+  test_deserialize_bad_data (tests.test_routes.TestAccountModel) ... ok
+  test_deserialize_missing_data (tests.test_routes.TestAccountModel) ... ok
+  test_find_account (tests.test_routes.TestAccountModel) ... ok
+  test_find_account_not_found (tests.test_routes.TestAccountModel) ... ok
+  test_list_all_accounts (tests.test_routes.TestAccountModel) ... ok
+  test_repr (tests.test_routes.TestAccountModel) ... ok
+  test_serialize_an_account (tests.test_routes.TestAccountModel) ... ok
+  test_update_an_account (tests.test_routes.TestAccountModel) ... ok
+  test_update_without_id (tests.test_routes.TestAccountModel) ... ok
+
+  ----------------------------------------------------------------------
+  Ran 27 tests in 0.847s
+
+  OK
+
+  Name                              Stmts   Miss  Cover
+  -----------------------------------------------------
+  service/__init__.py                  20      2    90%
+  service/common/__init__.py            1      0   100%
+  service/common/error_handlers.py     25      0   100%
+  service/common/log_handlers.py        7      1    86%
+  service/common/status.py              8      0   100%
+  service/models.py                   65      2    97%
+  service/routes.py                   62      1    98%
+  -----------------------------------------------------
+  TOTAL                              188      6    97%
+
+================================================================================
+Result: ✅ ALL STEPS PASSED — Build successful
+================================================================================

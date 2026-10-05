@@ -1,0 +1,22 @@
+# Application JSON Output — Port 8080
+# Generated when the application launches on port 8080
+
+$ curl http://localhost:8080/
+
+{
+  "name": "Account REST API Service",
+  "version": "1.0",
+  "paths": {
+    "list_accounts": "/accounts",
+    "create_account": "/accounts",
+    "read_account": "/accounts/<int:account_id>",
+    "update_account": "/accounts/<int:account_id>",
+    "delete_account": "/accounts/<int:account_id>"
+  }
+}
+
+$ curl http://localhost:8080/health
+
+{
+  "status": "OK"
+}

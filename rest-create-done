@@ -1,0 +1,29 @@
+# REST API — CREATE Account
+# cURL Command and Output
+
+## Command:
+$ curl -X POST http://localhost:8080/accounts \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Dhananjay Kumar",
+    "email": "dhananjay@example.com",
+    "address": "123 Main Street, Bangalore, India",
+    "phone_number": "+91-9876543210"
+  }'
+
+## Output:
+{
+  "id": 1,
+  "name": "Dhananjay Kumar",
+  "email": "dhananjay@example.com",
+  "address": "123 Main Street, Bangalore, India",
+  "phone_number": "+91-9876543210",
+  "date_joined": "2026-04-24"
+}
+
+## HTTP Response:
+HTTP/1.1 201 CREATED
+Content-Type: application/json
+Location: /accounts/1
+
+## Status: SUCCESS — Account created with ID 1

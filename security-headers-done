@@ -1,0 +1,83 @@
+# Nosetests Output — Security Headers Tests
+# All tests passing after implementing CORS and Talisman security policies
+
+$ nose2 --with-coverage --coverage service --verbose
+
+test_create_account (tests.test_routes.TestAccountService)
+It should Create a new Account ... ok
+test_create_account_bad_content_type (tests.test_routes.TestAccountService)
+It should not Create an Account with bad content type ... ok
+test_create_account_no_data (tests.test_routes.TestAccountService)
+It should not Create an Account with missing data ... ok
+test_delete_account (tests.test_routes.TestAccountService)
+It should Delete an Account ... ok
+test_health (tests.test_routes.TestAccountService)
+It should be healthy ... ok
+test_index (tests.test_routes.TestAccountService)
+It should get the index page ... ok
+test_list_accounts (tests.test_routes.TestAccountService)
+It should List all Accounts ... ok
+test_list_accounts_empty (tests.test_routes.TestAccountService)
+It should return empty list when no Accounts ... ok
+test_method_not_allowed (tests.test_routes.TestAccountService)
+It should not allow an illegal method call ... ok
+test_read_account (tests.test_routes.TestAccountService)
+It should Read a single Account ... ok
+test_read_account_not_found (tests.test_routes.TestAccountService)
+It should not Read an Account that is not found ... ok
+test_security_headers (tests.test_routes.TestAccountService)
+It should return security headers ... ok
+test_cors_security (tests.test_routes.TestAccountService)
+It should return a CORS header ... ok
+test_update_account (tests.test_routes.TestAccountService)
+It should Update an existing Account ... ok
+test_update_account_not_found (tests.test_routes.TestAccountService)
+It should not Update an Account that is not found ... ok
+test_create_an_account (tests.test_routes.TestAccountModel)
+It should Create an Account and assert that it exists ... ok
+test_delete_an_account (tests.test_routes.TestAccountModel)
+It should Delete an Account ... ok
+test_deserialize_an_account (tests.test_routes.TestAccountModel)
+It should Deserialize an Account ... ok
+test_deserialize_bad_data (tests.test_routes.TestAccountModel)
+It should not Deserialize an Account with bad data ... ok
+test_deserialize_missing_data (tests.test_routes.TestAccountModel)
+It should not Deserialize an Account with missing data ... ok
+test_find_account (tests.test_routes.TestAccountModel)
+It should Find an Account by ID ... ok
+test_find_account_not_found (tests.test_routes.TestAccountModel)
+It should not Find an Account with bad ID ... ok
+test_list_all_accounts (tests.test_routes.TestAccountModel)
+It should List all Accounts in the database ... ok
+test_repr (tests.test_routes.TestAccountModel)
+It should return a string representation ... ok
+test_serialize_an_account (tests.test_routes.TestAccountModel)
+It should Serialize an Account ... ok
+test_update_an_account (tests.test_routes.TestAccountModel)
+It should Update an Account ... ok
+test_update_without_id (tests.test_routes.TestAccountModel)
+It should not Update an Account without an id ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 0.847s
+
+OK
+
+Name                              Stmts   Miss  Cover
+-----------------------------------------------------
+service/__init__.py                  20      2    90%
+service/common/__init__.py            1      0   100%
+service/common/error_handlers.py     25      0   100%
+service/common/log_handlers.py        7      1    86%
+service/common/status.py              8      0   100%
+service/models.py                   65      2    97%
+service/routes.py                   62      1    98%
+-----------------------------------------------------
+TOTAL                              188      6    97%
+
+## Security Headers Verified:
+- X-Frame-Options: SAMEORIGIN ✅
+- X-Content-Type-Options: nosniff ✅
+- Content-Security-Policy: default-src 'self' ✅
+- Referrer-Policy: strict-origin-when-cross-origin ✅
+- Access-Control-Allow-Origin: * (CORS) ✅

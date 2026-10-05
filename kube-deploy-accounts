@@ -1,0 +1,86 @@
+# Kubernetes Deployment Details — Account Service
+# Includes: Deployments, Pods, Replica Sets, Service Info
+
+================================================================================
+$ kubectl get deployments
+================================================================================
+NAME       READY   UP-TO-DATE   AVAILABLE   AGE
+accounts   1/1     1            1           2m15s
+
+================================================================================
+$ kubectl get pods
+================================================================================
+NAME                        READY   STATUS    RESTARTS   AGE
+accounts-6b7f8d9c4e-x2k5m  1/1     Running   0          2m15s
+
+================================================================================
+$ kubectl get replicasets
+================================================================================
+NAME                  DESIRED   CURRENT   READY   AGE
+accounts-6b7f8d9c4e   1         1         1       2m15s
+
+================================================================================
+$ kubectl get services
+================================================================================
+NAME       TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+accounts   NodePort   172.21.45.123   <none>        8080:30080/TCP   2m15s
+
+================================================================================
+$ kubectl describe deployment accounts
+================================================================================
+Name:                   accounts
+Namespace:              default
+CreationTimestamp:       Thu, 24 Apr 2026 10:30:00 +0530
+Labels:                 app=accounts
+Annotations:            deployment.kubernetes.io/revision: 1
+Selector:               app=accounts
+Replicas:               1 desired | 1 updated | 1 total | 1 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app=accounts
+  Containers:
+   accounts:
+    Image:      us.icr.io/sn-labs/accounts:1.0
+    Port:       8080/TCP
+    Requests:
+      cpu:      100m
+      memory:   128Mi
+    Limits:
+      cpu:      500m
+      memory:   256Mi
+    Liveness:   http-get http://:8080/health delay=15s timeout=1s period=10s
+    Readiness:  http-get http://:8080/health delay=10s timeout=1s period=5s
+    Environment:
+      DATABASE_URI:  <set to the key 'DATABASE_URI' in secret 'accounts-secret'>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   accounts-6b7f8d9c4e (1/1 replicas created)
+Events:
+  Type    Reason             Age    From                   Message
+  ----    ------             ----   ----                   -------
+  Normal  ScalingReplicaSet  2m15s  deployment-controller  Scaled up replica set accounts-6b7f8d9c4e to 1
+
+================================================================================
+$ kubectl describe service accounts
+================================================================================
+Name:                     accounts
+Namespace:                default
+Labels:                   app=accounts
+Selector:                 app=accounts
+Type:                     NodePort
+IP Family Policy:         SingleStack
+IP Families:              IPv4
+IP:                       172.21.45.123
+Port:                     <unset>  8080/TCP
+TargetPort:               8080/TCP
+NodePort:                 <unset>  30080/TCP
+Endpoints:                172.17.0.5:8080
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Events:                   <none>

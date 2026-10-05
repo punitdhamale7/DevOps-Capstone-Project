@@ -1,0 +1,40 @@
+# REST API — LIST All Accounts
+# cURL Command and Output
+
+## Command:
+$ curl -X GET http://localhost:8080/accounts \
+  -H "Content-Type: application/json"
+
+## Output:
+[
+  {
+    "id": 1,
+    "name": "Dhananjay Kumar",
+    "email": "dhananjay@example.com",
+    "address": "123 Main Street, Bangalore, India",
+    "phone_number": "+91-9876543210",
+    "date_joined": "2026-04-24"
+  },
+  {
+    "id": 2,
+    "name": "Priya Sharma",
+    "email": "priya.sharma@example.com",
+    "address": "456 Park Avenue, Mumbai, India",
+    "phone_number": "+91-9123456789",
+    "date_joined": "2026-04-24"
+  },
+  {
+    "id": 3,
+    "name": "Rahul Patel",
+    "email": "rahul.patel@example.com",
+    "address": "789 Lake Road, Delhi, India",
+    "phone_number": "+91-9012345678",
+    "date_joined": "2026-04-24"
+  }
+]
+
+## HTTP Response:
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+## Status: SUCCESS — Listed 3 accounts

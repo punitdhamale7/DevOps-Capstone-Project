@@ -1,0 +1,28 @@
+# REST API — UPDATE Account
+# cURL Command and Output
+
+## Command:
+$ curl -X PUT http://localhost:8080/accounts/1 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Dhananjay Kumar (Updated)",
+    "email": "dhananjay.updated@example.com",
+    "address": "456 New Address, Hyderabad, India",
+    "phone_number": "+91-9876543210"
+  }'
+
+## Output:
+{
+  "id": 1,
+  "name": "Dhananjay Kumar (Updated)",
+  "email": "dhananjay.updated@example.com",
+  "address": "456 New Address, Hyderabad, India",
+  "phone_number": "+91-9876543210",
+  "date_joined": "2026-04-24"
+}
+
+## HTTP Response:
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+## Status: SUCCESS — Account with ID 1 updated successfully
